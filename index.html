@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component Example</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{ hello }}</h1>
+        <h2>Counter components</h2>
+        <counter-component></counter-component>
+        <counter-component></counter-component>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+
+        const CounterComponent = {
+            template: `
+              <button @click="count++">
+                You clicked me {{ count }} times.
+              </button>
+            `,
+            setup() {
+                const count = Vue.ref(0);
+                return { count };
+            }
+        };
+
+        const app = Vue.createApp({
+            components: {
+                CounterComponent
+            },
+            setup() {
+                const hello = Vue.ref("Hello components in Vue!");
+                return { hello };
+            }
+        });
+
+        app.mount('#app');
+
+    </script>
+</body>
+
+</html>
