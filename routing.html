@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Routing Example</title>
+    <script src="https://unpkg.com/vue@2.7.10/dist/vue.js"></script>
+    <!-- Import Vue Router -->
+    <script src="https://unpkg.com/vue-router@3.5.4/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>Simple Vue Router Example</h1>
+        <nav>
+            <ul>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/about">About</router-link></li>
+            </ul>
+        </nav>
+        <!-- Route outlet -->
+        <!-- Component matched by the route will render here -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        // Define route components
+        const Home = { template: '<div><h2>Home Page</h2><p>Welcome to the home page.</p></div>' }
+        const About = { template: '<div><h2>About Page</h2><p>This is a simple about page.</p></div>' }
+
+        // Define routes
+        const routes = [
+            { path: '/', component: Home },
+            { path: '/about', component: About }
+        ]
+
+        // Create the router instance and pass the `routes` option
+        const router = new VueRouter({
+            routes // short for `routes: routes`
+        })
+
+        // Create and mount the root instance
+        const app = new Vue({
+            router
+        }).$mount('#app')
+    </script>
+</body>
+</html>
